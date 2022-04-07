@@ -130,7 +130,7 @@ namespace Notepad
         }
         public void PasteText()
         {
-            textBox1.Text = textBox1.Text.Substring(0,textBox1.SelectionStart) + Clipboard.GetText()+ textBox1.Text.Substring(textBox1.SelectionStart,textBox1.Text.Length+textBox1.SelectionStart);
+            textBox1.Text = textBox1.Text.Substring(0, textBox1.SelectionStart) + Clipboard.GetText() + textBox1.Text.Substring(textBox1.SelectionStart, textBox1.Text.Length + textBox1.SelectionStart);
         }
 
         private void OnCopyClick(object sender, EventArgs e)
