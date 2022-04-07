@@ -114,5 +114,44 @@ namespace Notepad
                 }
             }
         }
+        public void CopyText()
+        {
+            Clipboard.SetText(textBox1.SelectedText);
+        }
+        public void OutText()
+        {
+            Clipboard.SetText(textBox1.Text.Substring(textBox1.SelectionStart, textBox1.SelectionLength));
+            textBox1.Text=textBox1.Text.Remove(textBox1.SelectionStart,textBox1.SelectionLength);
+        }
+        public void PasteText()
+        {
+            textBox1.Text = textBox1.Text.Substring(0,textBox1.SelectionStart) + Clipboard.GetText()+ textBox1.Text.Substring(textBox1.SelectionStart,textBox1.Text.Length+textBox1.SelectionStart);
+        }
+
+        private void OnCopyClick(object sender, EventArgs e)
+        {
+            CopyText();
+        }
+
+        private void OnOutClick(object sender, EventArgs e)
+        {
+            OutText();
+        }
+
+        private void OnPasteClick(object sender, EventArgs e)
+        {
+            PasteText();
+        }
+
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            SavethissavedFile();
+        }
+
+        private void OnFontClick(object sender, EventArgs e)
+        {
+            FontSettings fs = new FontSettings();
+            fs.Show();
+        }
     }
 }
