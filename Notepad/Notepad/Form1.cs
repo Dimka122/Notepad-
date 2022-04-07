@@ -30,12 +30,15 @@ namespace Notepad
         }
         public void CreateNewDocument(object sender,EventArgs e)
         {
+            SavethissavedFile();
             textBox1.Text = "";
             filename = "";
+            isFileChanged = false;
             UpdateTextWithTitle();
         }
         public void OpenFile(object sender, EventArgs e)
         {
+            SavethissavedFile();
             openFileDialog1.FileName = "";
             if(openFileDialog1.ShowDialog()==DialogResult.OK)
             {
@@ -65,7 +68,7 @@ namespace Notepad
             }
             try
             {
-                StreamWriter sw=new StreamWriter(_filename);
+                StreamWriter sw=new StreamWriter(_filename+".txt");
                 sw.Write(textBox1.Text);
                 sw.Close();
                 filename = _filename;
@@ -98,8 +101,18 @@ namespace Notepad
         {
             if (filename != "")
                 this.Text = filename + "-Блокнот";
-            else this.Text = filename + "Безимянный Блокнот";
+            else this.Text = filename + "Безымянный-Блокнот";
         }
-        public void 
+        public void SavethissavedFile()
+        {
+            if(isFileChanged)
+            {
+                DialogResult result = MessageBox.Show("Сохранить изменения в файле?", "Сохранение файла", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                    if(result==DialogResult.Yes)
+                {
+                    SaveFile(filename);
+                }
+            }
+        }
     }
 }
