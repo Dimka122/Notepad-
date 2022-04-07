@@ -26,11 +26,13 @@ namespace Notepad
         {
             filename = "";
             isFileChanged = false;
+            UpdateTextWithTitle();
         }
         public void CreateNewDocument(object sender,EventArgs e)
         {
             textBox1.Text = "";
             filename = "";
+            UpdateTextWithTitle();
         }
         public void OpenFile(object sender, EventArgs e)
         {
@@ -43,11 +45,13 @@ namespace Notepad
                     textBox1.Text=sr.ReadToEnd();
                     sr.Close();
                     filename = openFileDialog1.FileName;
+                    isFileChanged = false;
                 }
                 catch
                 {
                     MessageBox.Show("Невозможно открыть файл");
                 }
+                UpdateTextWithTitle();
             }
         }
         public void SaveFile(string _filename)
@@ -71,6 +75,7 @@ namespace Notepad
             {
                 MessageBox.Show("Невозможно сохранить файл");
             }
+            UpdateTextWithTitle();
         }
         public void Save(object sender,EventArgs e)
         {
@@ -84,8 +89,17 @@ namespace Notepad
         {
             if(!isFileChanged)
             {
-
+                this.Text = this.Text.Replace("*", " ");
+                isFileChanged = true;
+                this.Text = "*" + this.Text;
             }
         }
+        public void UpdateTextWithTitle()
+        {
+            if (filename != "")
+                this.Text = filename + "-Блокнот";
+            else this.Text = filename + "Безимянный Блокнот";
+        }
+        public void 
     }
 }
