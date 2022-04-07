@@ -165,6 +165,8 @@ namespace Notepad
             {
                 fontSize = fontSetts.fontSize;
                 fs = fontSetts.fs;
+                textBox1.Font = new Font(textBox1.Font.FontFamily, fontSize, fs);
+                fontSetts.Close();
             }
         }
     }
