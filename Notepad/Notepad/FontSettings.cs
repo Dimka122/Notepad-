@@ -12,6 +12,8 @@ namespace Notepad
 {
     public partial class FontSettings : Form
     {
+        public int fontSize = 0;
+        public System.Drawing.FontStyle fs = FontStyle.Regular;
         public FontSettings()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace Notepad
         private void OnFontChanged(object sender, EventArgs e)
         {
             ExampleText.Font = new Font(ExampleText.Font.FontFamily, int.Parse(fontBox.SelectedItem.ToString()), ExampleText.Font.Style);
+            fontSize = int.Parse(fontBox.SelectedItem.ToString());
         }
 
         private void OnStyleChanged(object sender, EventArgs e)
@@ -45,6 +48,12 @@ namespace Notepad
                     break;
 
             }
+            fs = ExampleText.Font.Style;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

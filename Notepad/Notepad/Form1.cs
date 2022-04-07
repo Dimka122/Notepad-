@@ -14,8 +14,13 @@ namespace Notepad
     
     public partial class Form1 : Form
     {
+        public int fontSize = 0;
+        public System.Drawing.FontStyle fs = FontStyle.Regular;
+
         public string filename;
         public bool isFileChanged;
+
+        public FontSettings fontSetts;
         public Form1()
         {
             InitializeComponent();
@@ -150,8 +155,17 @@ namespace Notepad
 
         private void OnFontClick(object sender, EventArgs e)
         {
-            FontSettings fs = new FontSettings();
-            fs.Show();
+            fontSetts = new FontSettings();
+            fontSetts.Show();
+        }
+
+        private void OnFocus(object sender, EventArgs e)
+        {
+            if(fontSetts !=null)
+            {
+                fontSize = fontSetts.fontSize;
+                fs = fontSetts.fs;
+            }
         }
     }
 }

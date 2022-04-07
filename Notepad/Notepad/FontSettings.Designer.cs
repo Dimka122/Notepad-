@@ -32,12 +32,13 @@
             this.ExampleText = new System.Windows.Forms.Label();
             this.fontBox = new System.Windows.Forms.ComboBox();
             this.styleBox = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ExampleLabel
             // 
             this.ExampleLabel.AutoSize = true;
-            this.ExampleLabel.Location = new System.Drawing.Point(129, 176);
+            this.ExampleLabel.Location = new System.Drawing.Point(46, 123);
             this.ExampleLabel.Name = "ExampleLabel";
             this.ExampleLabel.Size = new System.Drawing.Size(51, 13);
             this.ExampleLabel.TabIndex = 0;
@@ -47,7 +48,7 @@
             // 
             this.ExampleText.AutoSize = true;
             this.ExampleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ExampleText.Location = new System.Drawing.Point(147, 189);
+            this.ExampleText.Location = new System.Drawing.Point(62, 145);
             this.ExampleText.Name = "ExampleText";
             this.ExampleText.Size = new System.Drawing.Size(98, 24);
             this.ExampleText.TabIndex = 1;
@@ -93,11 +94,22 @@
             this.styleBox.TabIndex = 4;
             this.styleBox.SelectedValueChanged += new System.EventHandler(this.OnStyleChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(85, 219);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 31);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "OK";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FontSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 379);
+            this.ClientSize = new System.Drawing.Size(256, 262);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.styleBox);
             this.Controls.Add(this.fontBox);
             this.Controls.Add(this.ExampleText);
@@ -115,5 +127,6 @@
         private System.Windows.Forms.Label ExampleText;
         private System.Windows.Forms.ComboBox fontBox;
         private System.Windows.Forms.ComboBox styleBox;
+        private System.Windows.Forms.Button button1;
     }
 }
