@@ -30,8 +30,8 @@
         {
             this.ExampleLabel = new System.Windows.Forms.Label();
             this.ExampleText = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.fontBox = new System.Windows.Forms.ComboBox();
+            this.styleBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // ExampleLabel
@@ -52,13 +52,6 @@
             this.ExampleText.Size = new System.Drawing.Size(98, 24);
             this.ExampleText.TabIndex = 1;
             this.ExampleText.Text = "AaBbYyZz";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(358, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
             // 
             // fontBox
             // 
@@ -85,13 +78,28 @@
             this.fontBox.TabIndex = 3;
             this.fontBox.SelectedValueChanged += new System.EventHandler(this.OnFontChanged);
             // 
+            // styleBox
+            // 
+            this.styleBox.FormattingEnabled = true;
+            this.styleBox.Items.AddRange(new object[] {
+            "Обычный",
+            "Курсив",
+            "Полужирный",
+            "Линия по середине",
+            "Подчеркивание"});
+            this.styleBox.Location = new System.Drawing.Point(132, 13);
+            this.styleBox.Name = "styleBox";
+            this.styleBox.Size = new System.Drawing.Size(113, 21);
+            this.styleBox.TabIndex = 4;
+            this.styleBox.SelectedValueChanged += new System.EventHandler(this.OnStyleChanged);
+            // 
             // FontSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 379);
+            this.Controls.Add(this.styleBox);
             this.Controls.Add(this.fontBox);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ExampleText);
             this.Controls.Add(this.ExampleLabel);
             this.Name = "FontSettings";
@@ -105,7 +113,7 @@
 
         private System.Windows.Forms.Label ExampleLabel;
         private System.Windows.Forms.Label ExampleText;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox fontBox;
+        private System.Windows.Forms.ComboBox styleBox;
     }
 }
