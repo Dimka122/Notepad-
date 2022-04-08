@@ -8,12 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Speech.Synthesis;
+using static Notepad.Class1;
+using System.Threading;
 
 namespace Notepad
 {
     
     public partial class Form1 : Form
     {
+        static SpeechSynthesizer synth;
+        C_Singelton s1 = C_Singelton.GetInstance();
+        private int value = 100;
+        //private int rate;
+
         public int fontSize = 0;
         public System.Drawing.FontStyle fs = FontStyle.Regular;
 
@@ -26,7 +34,22 @@ namespace Notepad
             InitializeComponent();
 
             Init();
+
+            synth = new SpeechSynthesizer();
+            synth.SetOutputToDefaultAudioDevice();
+            synth.SpeakCompleted += Synth_SpeakCompleted;
         }
+        private void Synth_SpeakCompleted(object sender, SpeakCompletedEventArgs e)
+        {
+            //synth.SpeakAsync(textBox1.Text);
+            button1.Text = "Голос";
+            label1.Text=
+        }
+        //private void TextBox1_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    rate = Int32.Parse(textBox1.Text);
+        //}
+
         public void Init()
         {
             filename = "";
@@ -169,5 +192,47 @@ namespace Notepad
                 fontSetts.Close();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string text = textBox1.Text;
+
+            if (text.Trim().Length == 0)
+            {
+                MessageBox.Show("Не удается прочитать пустой контент!","Сообщение об ошибке");
+                return;
+            }
+
+            if (button1.Text == "Голос")
+            {
+
+                synth = new SpeechSynthesizer();
+
+                new Thread(Speak).Start();
+
+                button1.Text = "Остановить";
+
+            }
+            //button1.Text == "Остановить"
+            else
+            {
+
+                synth.SpeakAsyncCancelAll(); // Прекратить чтение
+
+                button1.Text = "Голос";
+            }
+
+        }
+        private void Speak()
+        {
+
+            //synth.Rate = rate;
+            //synth.SelectVoice("Microsoft Lili "); // Установить диктор (китайский)
+            //synth.SelectVoice("Microsoft Anna "); // Английский
+            synth.Volume = value;
+            synth.SpeakAsync(textBox1.Text); // Метод чтения речи
+            synth.SpeakCompleted += Synth_SpeakCompleted; // Событие привязки
+        }
+
     }
 }
