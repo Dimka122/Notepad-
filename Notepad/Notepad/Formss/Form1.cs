@@ -43,7 +43,6 @@ namespace Notepad
         {
             //synth.SpeakAsync(textBox1.Text);
             button1.Text = "Голос";
-            label1.Text=
         }
         //private void TextBox1_SelectedIndexChanged(object sender, EventArgs e)
         //{
