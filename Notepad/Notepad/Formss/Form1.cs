@@ -11,6 +11,7 @@ using System.IO;
 using System.Speech.Synthesis;
 using static Notepad.Class1;
 using System.Threading;
+using Notepad.Formss;
 
 namespace Notepad
 {
@@ -29,6 +30,7 @@ namespace Notepad
         public bool isFileChanged;
 
         public FontSettings fontSetts;
+        public Form2 form2;
         public Form1()
         {
             InitializeComponent();
@@ -233,5 +235,10 @@ namespace Notepad
             synth.SpeakCompleted += Synth_SpeakCompleted; // Событие привязки
         }
 
+        private void открытьToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            form2 = new Form2();
+            form2.Show();
+        }
     }
 }
